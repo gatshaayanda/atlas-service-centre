@@ -1,195 +1,312 @@
-# BOEMO JOOS FOOD DEALS — Agent Operating Contract
+# ATLAS SERVICE CENTRE — Agent Operating Contract
 
 ## Product
-BOEMO Joos Food Deals is the real customer-facing ordering and lightweight operations PWA for BOEMO Joos Dealer, a mobile kitchen serving food around Botswana Accountancy College (BAC) and nearby student areas.
+Atlas Heavy & Light Duty Workshop T/A Atlas Service Centre is a real customer-facing workshop PWA for commercial transport operators, fleet managers, light truck operators and private vehicle owners.
 
-This is a real small-business product, not a demo, template, QA app, or generic SaaS.
+Legal entity: Atlas Heavy & Light Duty Workshop T/A Atlas Service Centre
+Address: Plot 14441, Unit 1, Kamushongo Road, Gaborone West Industrial, Gaborone, Botswana
+Phone: +267 392 8833
+Email: atlascentre@gmail.com
+Hours: Monday-Friday 07:30-17:30; Saturday 08:00-13:00; Sunday closed.
 
-## Project boundary
-This AGENTS.md governs **only** `gatshaayanda/boemo-joos-food-deals`. Do not apply another project's assumptions, branding, Firebase identifiers, collections, assets, workflows or product rules here. In particular, do not confuse BOEMO with Namane Tyres, Admin Hub Games, BoardSignal, or other repositories.
+This is a real small-business product, not a demo, generic SaaS, or template.
 
 ## Roles
 - Product owner / final reviewer: user
 - Technical navigator + implementation: ChatGPT through repository tooling
 - GitHub is the source of truth
-- No Codex dependency
+- Git Bash is the preferred local control layer
+- Vercel is the deployment target
 
-## Workflow
-START → INSPECT → BUILD → VERIFY → CHECKPOINT → CONTINUE/RECOVER.
-Golden rule: **Unexpected result = STOP → inspect reality → then act.**
+## STARTING A NEW PROJECT FROM A REFERENCE REPOSITORY
+When the user says a new GitHub repository is empty and wants to use an existing project as its foundation:
 
-Before changing code, inspect repository, Git state, Firebase configuration, deployed state when relevant, and the actual business workflow.
+1. Do NOT run `git status` inside the empty destination directory first. An empty directory is not a Git repository.
+2. Confirm the destination GitHub repository exists and identify its default branch.
+3. Inspect the proposed reference repository before cloning: AGENTS.md, package.json, architecture/routes, Firebase configuration, PWA/offline implementation, and relevant product-specific assets/data.
+4. If the destination local directory is explicitly confirmed empty/new, clone the reference repository directly into that destination.
+5. Immediately replace the cloned repository's `origin` with the destination GitHub repository.
+6. Ensure the intended branch is checked out (normally `main`).
+7. Verify remote, branch and working-tree state before making application changes.
+8. STOP at START -> INSPECT. Do not begin customization until the cloned foundation has been inspected.
+9. If the destination directory contains unexpected files, STOP. Inspect reality before deleting, cloning over, or resetting anything.
 
-## Product model
-Customer → Menu / Deals → Order ahead → Kitchen queue → Pickup or Delivery → Complete
+Preferred Git Bash pattern:
 
-## Customer accounts and guest ordering
-Authentication is **never a prerequisite for buying food**.
+```bash
+cd ~/Desktop/MyWebApps/10th\\ iteration && \
+rm -rf <destination> && \
+git clone <reference-repo-url>.git <destination> && \
+cd <destination> && \
+git remote remove origin && \
+git remote add origin <destination-repo-url>.git && \
+git branch -M main && \
+echo "=== REMOTE ===" && git remote -v && \
+echo "=== STATUS ===" && git status && \
+echo "=== BRANCH ===" && git branch --show-current && \
+code .
+```
 
-The primary checkout choice is:
-- **Order as Guest** — name, WhatsApp/phone, order details, pickup or delivery, then submit.
-- Guest details should be saved to Firebase when a guest Firebase session can be created; local/offline ordering must not be blocked if account/session creation fails.
-- Returning customers should see saved details when the same device/session is available.
-- Firebase anonymous authentication may provide the guest customer UID; `customers/{uid}` stores the saved profile.
-- A guest can later upgrade that profile to a durable account, including **Continue with Google**. Linking Google to the existing guest user must preserve the customer's BOEMO profile/order association.
-- Email-link authentication is optional and must never be required for ordinary ordering. The Spark-plan email-link daily limit must not become a checkout dependency.
-- Customer profile fields: name, email, WhatsApp/phone, optional preferred delivery location, optional notes.
-- Customers may read/write only their own profile. Customer order reads are limited to orders associated with their authenticated UID; admin owner/staff retain operational access.
+Do not prepend `git status` inside a known-empty destination directory.
 
-## Customer experience
-Make these obvious on a phone:
-- today's food
-- supplied deals and prices
-- mobile kitchen location
-- serving hours
-- order-ahead
-- pickup or delivery
-- delivery landmark/instructions
-- contact fallback
+## WORKFLOW
+START -> INSPECT -> BUILD -> VERIFY -> CHECKPOINT -> CONTINUE/RECOVER.
 
-Do not invent payment confirmation, opening hours, delivery guarantees, testimonials, stock, or a fixed address.
+Golden rule: **Unexpected result = STOP -> inspect reality -> then act.**
 
-## Supplied menu
-Monday: Ke Starch, Beetroot, Pumpkin, Chicken + Stew, Soup, Drink of Choice
-Tuesday: Samp & Stew
-Wednesday: Pap, Braai, Chicken, Morogo
-Thursday: Dumplings & Chicken
-Friday: Hot Dog & Fries
+Before changing code:
+- inspect the actual repository, not assumptions;
+- inspect AGENTS.md;
+- inspect Git branch/status/remotes and current commit;
+- inspect package.json and application architecture;
+- inspect Firebase configuration and environment-variable names;
+- inspect PWA manifest/service worker/offline behavior;
+- inspect relevant deployed state when needed;
+- use current official documentation when framework/API behavior matters.
 
-Supplied deals:
-Beggar & Chips P30 / Bring a Friend P25
-Hot Dog P25 / Bring a Friend P20
-Potatoes P10
-Cup Drink P8 / Bring a Friend 2 for P15
-Still Water P7 / Bring a Friend 2 for P10
-Sausage & Chips P30
-Combo Sausage + Chips + Drink P40
-Beggar + Chips + Drink P40
+Make the smallest controlled change. Preserve working functionality. Do not remove existing functionality unless explicitly requested.
 
-## Ordering
-Orders preserve item and price snapshots.
-Modes: pickup or delivery.
-Orders may include an optional `customerId` so guest orders can become part of a customer's future history without changing the fast guest checkout.
-Delivery captures location/landmark, phone and instructions.
+After meaningful changes:
+- update AGENTS.md with durable project decisions;
+- run typecheck/lint/build as applicable;
+- review the actual diff;
+- commit a meaningful checkpoint;
+- push to the intended branch;
+- report the commit/checkpoint and what is ready to test.
 
-Statuses:
-New → Accepted → Preparing → Ready → Delivering / Collected → Delivered
-with Cancelled available.
+## PRODUCT MODEL
+Customer/Fleet -> Service request or booking -> Job card -> Workshop status -> Testing -> Ready -> Complete.
 
-A submission is not the same as business acceptance. Offline wording must never claim the kitchen received an unsynchronized order.
+Primary services:
+- commercial truck repair
+- light vehicle mechanical service
+- auto-electrical repairs
+- fleet engine overhauls
+- preventive maintenance
+- towing requests
+- onsite auto-electrical requests
+- routine service bookings
 
-## Offline-first PWA
-Maintain installable manifest, service worker, offline route, public app-shell caching and Firestore persistent local cache. Never cache private Firebase API responses indiscriminately or large media blobs in the shell.
+Target customers:
+- logistics companies
+- fleet managers
+- light truck operators
+- private vehicle owners
+- Southern African transport operators where relevant.
 
-## Firebase
-BOEMO must use its own dedicated Firebase project. Never reuse another application's identifiers, credentials, collections, seed data or rules. Browser config uses NEXT_PUBLIC_FIREBASE_* only.
+## CUSTOMER EXPERIENCE
+Mobile-first. Make these obvious:
+- Book a service
+- Request towing
+- Request onsite auto-electrical assistance
+- Routine service
+- Fleet/service history
+- Current job status
+- Workshop contact details
+- Opening hours
+- Location
+- Emergency/urgent human contact fallback
 
-## Firestore boundary
-Public customers may create validated orders. Authenticated customers may access only their own `customers/{uid}` profile and associated orders. admins/{uid}.role owner/staff may read/update operational orders and manage future menu/business settings. Never expose customer profiles publicly or weaken rules to hide UI/configuration problems.
+Do not invent prices, turnaround guarantees, testimonials, stock availability, payment confirmations, fleet contracts, or service guarantees unless supplied or implemented.
 
-Never weaken rules to hide UI/configuration problems.
+## JOB STATUS
+The customer-facing job tracker should use the workshop workflow:
+Diagnostics -> Spares Sourcing -> Repair -> Testing -> Ready.
 
-## Admin
-/admin is a practical kitchen operations surface: today's queue, order details, status updates and delivery queue, plus owner-controlled menu and today's location/serving hours. Do not build a generic CRM/ERP/accounting system.
+A customer submission is not the same as workshop acceptance. Offline wording must never claim the workshop received an unsynchronized request.
 
-The admin gate accepts Google or Email/Password Firebase users, but access is granted only when `admins/{uid}.role` is `owner` or `staff`. The first owner must be bootstrapped in Firebase Console; never hard-code an admin UID into the app.
+## OFFLINE-FIRST PWA
+Maintain:
+- installable manifest
+- service worker
+- offline route/state
+- cached public app shell
+- appropriate Firestore persistent local cache where Firebase is used.
 
-The public home and customer order page use the Firestore `menu` collection as the source of truth. The first authorized Kitchen load seeds the supplied starter menu into Firestore with stable IDs; owner/staff can then CRUD those same records. Do not reintroduce hard-coded menu/deal fallbacks. If no menu is published or the menu cannot be loaded, show the BOEMO phone fallback (76425849 / 76769834) rather than stale prices. Starter daily meals whose prices were not supplied remain unpublished until the owner enters the real price and makes them available. An online order failure must be surfaced as an online/Firebase error; do not mislabel an online write timeout as an offline save.
+Never indiscriminately cache private Firebase responses or large media blobs in the service worker.
 
-## Media
-Use supplied BOEMO food assets under public/boemo-assets/. Do not use inherited Namane assets as BOEMO content.
+Offline states must be truthful:
+- online confirmed: request/job data was sent successfully;
+- offline queued/saved: data is only saved locally and has not yet been confirmed by the workshop;
+- failed: request was not recorded and the human fallback must be shown.
 
-## Technical baseline
-Next.js 15, React 19, TypeScript, Firebase Auth, Firestore persistent local cache, Storage when needed, PWA/service worker, Vercel Analytics/Speed Insights.
+## FIREBASE
+Atlas has its own dedicated Firebase project:
+- project ID: `atlas-service-centre`
+- auth domain: `atlas-service-centre.firebaseapp.com`
+- storage bucket: `atlas-service-centre.firebasestorage.app`
 
-## Build discipline
-Before a meaningful checkpoint:
-npx tsc --noEmit
-npm run lint
-npm run build
+Never reuse BOEMO, Namane, Exquisite Waterproof Services, or another application's Firebase identifiers, collections, rules, storage paths or seed data.
 
-Do not run npm audit fix --force blindly. Never commit private credentials.
+Firebase web configuration is public client configuration. Runtime configuration belongs in `NEXT_PUBLIC_FIREBASE_*` environment variables. Never commit private server credentials or service-account keys.
 
-## Checkpoint
-Review the actual diff before committing. Commit meaningful checkpoints. Avoid unnecessary Vercel deployments.
-## Firebase Authentication deployment contract
-- BOEMO's production Vercel hostname is `boemo-joos-food-deals.vercel.app` and must be present in Firebase Authentication → Settings → Authorized domains. Google sign-in cannot be repaired in application code when Firebase returns `auth/unauthorized-domain`; this is a live Firebase project setting.
-- The Firebase project's default auth domain is `boemo-joos-food-deals.firebaseapp.com`. Keep that project identity in the deployed `NEXT_PUBLIC_FIREBASE_*` configuration.
-- Google sign-in uses the existing Firebase popup flow. Guest users are upgraded with `linkWithPopup`, preserving the anonymous UID and its order/profile association; standalone Google sign-in creates a normal Firebase user.
-- When troubleshooting `auth/unauthorized-domain`, verify the exact browser hostname, Firebase Authorized Domains, Google provider configuration, and deployed environment variables before changing application auth code.
+Expected Atlas environment names:
+`NEXT_PUBLIC_BASE_URL`
+`NEXT_PUBLIC_FIREBASE_API_KEY`
+`NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+`NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+`NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+`NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+`NEXT_PUBLIC_FIREBASE_APP_ID`
+`NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
 
-## Firebase environment and build safety
-- Firebase web configuration is public client configuration and must come from `NEXT_PUBLIC_FIREBASE_*` environment variables in deployed/runtime environments.
-- The Firebase client contains non-secret build placeholders so CI can prerender client routes when those environment variables are intentionally absent. Those placeholders are not a Firebase project and must never be treated as runtime configuration.
-- Before live Firebase testing, confirm the deployment has the real BOEMO Firebase environment variables for the relevant environment.
-- Anonymous Authentication is enabled in the BOEMO Firebase project. Guest checkout should therefore create an anonymous Firebase user when the client is online and configured correctly; checkout must still retain its guest fallback if authentication cannot be established.
+The supplied Atlas Firebase web configuration may be used to populate local/Vercel environment variables, but do not hard-code it into application source when the project architecture already uses environment variables.
 
-## Menu publishing and financial reconciliation
-- Owner/staff can control public menu prices, Bring-a-Friend prices, availability, food photos, and whether an item belongs to Today's Food or the everyday/deal menu.
-- Today's Food is data-driven from `menu` items scheduled to specific weekdays. The supplied weekly menu may be shown only as an informational guide when the owner has not published today's priced items; it must never become orderable, seed Firestore, override owner edits, or invent prices. Published Firestore menu items remain the source of truth.
-- Food photos are uploaded by authorized admin users to Firebase Storage under `boemoMedia/`; do not expose arbitrary storage writes.
-- Orders preserve item/price snapshots. Payment collection is tracked separately from the sale: payment method, payment status, and amount actually recorded as received.
-- Financials are a daily reconciliation view: expected order sales, recorded payments by method, outstanding amounts, actual cash/e-transfer/other received, and variances. This is not a profit-and-loss report because BOEMO does not yet record food costs or other expenses.
-- Do not mark an order paid merely because it was submitted. The kitchen records payment when cash or an e-transfer is actually received.
+## DATA / SECURITY
+Use a dedicated Atlas Firestore model.
 
+Customer-facing requests should be validated. Customers must not gain broad read/update/delete access to other customers' requests.
 
+Admin/workshop access should be role-controlled. Do not hard-code an admin UID.
 
-## Menu-entry UX checkpoint (September 2026)
-- The public home separates `section: "daily"` + today's `days` from `section: "deal"` items. New kitchen menu entries default to Today's Food for the current Botswana day, rather than silently landing in Deals.
-- Existing edits preserve their stored section/days. An item previously saved as a Deal must be edited and switched to Today's Food; code must not silently reinterpret an existing Deal as today's meal.
-- New menu-entry defaults use Africa/Gaborone so the kitchen's current day matches the public customer's day.
+Preserve service/job snapshots where historical accuracy matters; do not rely on mutable current service names/prices to rewrite historical jobs.
 
+Do not weaken Firestore or Storage rules to hide UI/configuration problems.
 
-## Legacy menu correction checkpoint (September 2026)
-- A one-time authorized-kitchen migration converts legacy custom items that were saved by the old New Item form as `section: deal`, `category: Deal`, and an auto-generated ID into Today's Food for the current Africa/Gaborone day, but only when today's published daily section is empty.
-- Starter deal records with stable `deal-` IDs are never migrated. The migration writes a marker so it cannot repeatedly reinterpret future menu edits.
-- This protects the customer's existing starter deals while correcting the specific old-form mistake that put newly entered food under Deals.
+## ADMIN / WORKSHOP DASHBOARD
+The admin surface is an operational workshop tool, not a generic CRM.
 
-## Current operating architecture (September 2026)
-- The kitchen queue is realtime: authorized admin clients subscribe to Firestore orders, menu and business settings rather than relying on manual refresh alone. Manual Refresh remains a recovery/control action.
-- Firestore persistent local cache uses the multi-tab cache. Firebase documents that queued writes synchronize when connectivity returns; the UI must distinguish a local/offline save from a write confirmed by the backend.
-- The customer order flow remains guest-first. Anonymous Firebase Auth is a convenience for profile/order association, not a prerequisite for buying.
-- The PWA service worker caches the public app shell plus /account and /admin. Private Firestore data is not copied into the service-worker cache; Firebase's own Firestore persistence handles authenticated/offline data.
-- Firebase Storage admin access must recognize the same owner/staff roles as Firestore, including the currently used capitalized Owner/Staff values.
-- Food photos are public-read and admin-write under boemoMedia/, with image-only uploads and a 12 MB per-file limit.
-- Browser push notifications are a later phase. Firebase Cloud Messaging for Web requires HTTPS, notification permission and a service-worker/token setup; do not promise push notifications until that infrastructure is implemented and tested.
+Core views:
+- today's jobs/requests
+- job details
+- customer/fleet details
+- job card
+- mechanic/dispatch assignment where implemented
+- status changes
+- spares/notes
+- testing/ready state
+- towing/onsite assistance queue
+- service history
+- fleet maintenance intervals
+- invoices/records where implemented.
 
-## Security and data integrity guardrails
-- Firestore rules are part of the source-of-truth repository, but changing firestore.rules or storage.rules in GitHub does not by itself deploy them to Firebase. Treat Firebase Rules deployment as a separate checkpoint and verify the live Rules tab after deployment.
-- Never make /orders/{id} publicly readable merely to make a tracking link convenient. Current order reads require the attached customer UID or authorized admin access.
-- Never expose customer profiles publicly.
-- Client-side order totals/prices are convenience data and must not be treated as payment proof. If BOEMO later accepts online payments, introduce server-side/payment-provider verification rather than trusting browser fields.
-- Do not silently turn Firestore permission errors into "offline mode." Offline authorization is only appropriate for an already-authorized cached admin session; permission/configuration failures must remain visible.
-- Storage uploads require connectivity even though Firestore data can queue offline. The UI should not describe an unuploaded photo as published.
+## REFERENCE-REPOSITORY RULE
+This project began from the BOEMO Joos Food Deals codebase to reuse proven technical patterns.
 
-## Current product maturity
-BOEMO is now a working small-business operations PWA foundation:
-1. public mobile storefront and weekly menu fallback;
-2. admin-controlled Today's Food, everyday/deal prices, Bring-a-Friend pricing, availability and food photos;
-3. mobile-kitchen location and serving-hours publishing;
-4. guest-first scheduled pickup/delivery orders;
-5. customer account/profile and same-account order history;
-6. live order tracking for authenticated/associated orders;
-7. PDF receipts and printing;
-8. realtime kitchen queue and order status/payment recording;
-9. daily cash/e-transfer/other reconciliation;
-10. installable/offline shell and Firestore offline persistence.
+BOEMO code is a technical foundation only. Before retaining any BOEMO-specific behavior, determine whether it belongs to Atlas.
 
-The next work should deepen reliability and business operations rather than add unrelated features.
+Must replace/remove BOEMO-specific:
+- branding and copy
+- food/menu/deal data
+- BOEMO assets
+- food ordering assumptions
+- BOEMO phone/location/hours
+- BOEMO Firebase identifiers
+- BOEMO collections/rules/seed data
+- BOEMO-specific customer/admin workflows.
 
+Do not delete useful generic PWA/Firebase infrastructure merely because it originated in BOEMO.
 
-## BOEMO commercial offer — September 2026
-- Existing BOEMO monthly food-subscription offer: **P600 per month**, covering Monday through Sunday.
-- Exact subscription entitlement, meal-selection rules, pickup/delivery treatment, payment/renewal workflow and cancellation rules are not yet defined in the app; do not invent them or advertise online subscription checkout until those rules are agreed and implemented.
-- Primary contact for the subscription offer: **76425849**.
+## VISUAL DIRECTION
+Industrial, trustworthy, mobile-first.
 
+Primary direction:
+- industrial navy #1B2A47
+- warning amber/gold #E67E22 or #F39C12
+- slate/dark or clean light surfaces
+- Inter, Roboto or Montserrat where appropriate.
 
-## Current-service menu placement correction (September 2026)
-- Legacy custom menu entries created by the former kitchen form (`section: deal`, `category: Deal`, generated non-`deal-` IDs) are the kitchen's current service foods. Until staff reclassifies them in the admin, the customer homepage and order form present them under Today's Food for the current Africa/Gaborone day, and exclude them from the separate evergreen Deals list.
-- Stable `deal-` starter records remain under Deals. Explicit daily records continue to obey their weekday schedule. The same classification is shared by homepage and checkout so displayed sections match orderable foods.
+Visual evidence should focus on:
+- heavy-duty trucks
+- vehicle lifts
+- diagnostics
+- auto-electrical work
+- engines/components
+- real workshop environment.
+
+Do not invent customer logos, trust badges, certifications, awards or testimonials.
 
 
-## Deals and offers admin UX (September 2026)
-- Menu & Prices keeps one existing workflow but provides explicit `+ Today's food` and `+ Deal / offer` actions so kitchen staff do not have to remember which section selector to use.
-- The admin list is grouped into Today's Food and Deals & offers. Deal records can show an optional Bring-a-Friend price alongside the normal price.
-- Deals remain ordinary `menu` records with `section: deal`; no separate collection or checkout workflow is introduced. This keeps the change small and preserves the existing Firestore model. Firestore supports updating existing document fields without replacing the document, which fits this model.
+## ATLAS BRAND / VISUAL SOURCE OF TRUTH
+The supplied Atlas marketing/signage specification supersedes the earlier generic visual direction when there is a conflict.
+
+Brand identity:
+- ASC abbreviation badge: interlocking stylized ASC green letterforms incorporating vehicle-lift/towing imagery where the supplied source asset supports it.
+- Full wordmark: ATLAS SERVICE CENTRE with the supplied descriptor: "Your Auto Mechanical & Electrical Specialists".
+- Primary green: #00873D (acceptable source variation #0B9B48 when matching an actual supplied logo asset).
+- Primary dark: #101010 / #121212.
+- Alert red: #D9381E for urgent/emergency CTAs; supplied marketing red #E52B50 may be retained where matching original promotional material.
+- Warning yellow: #F39C12.
+- Headers: heavy block/industrial display treatment; body: clean sans-serif. Do not substitute a generic tech/SaaS aesthetic for the workshop identity.
+
+Core service presentation should be organized into three customer-understandable divisions:
+1. Auto Mechanical: full engine overhauls; gearbox/differential repairs; brake-system overhauls; suspension/steering repairs; routine vehicle servicing.
+2. Auto Electrical: starter motors/alternators; vehicle rewiring; computerized diagnostics/fault-code work.
+3. Breakdown & Fleet: 24-hour towing/recovery; onsite repairs/auto-electrical assistance; fleet maintenance; fluid/maintenance checks.
+
+Supplied marketing claims that may be presented only as factual service inclusions when supported by the customer's source material: free computer diagnostics and free car wash with major services. Do not turn these into guarantees or invent eligibility conditions.
+
+Emergency contact UI supplied by the customer:
+- 24/7 emergency/towing CTA may use +267 71621734 and +267 74225346 as direct tap-to-call numbers.
+- General workshop contact remains +267 392 8833.
+- If a phone number's emergency availability is not independently confirmed in current customer material, label it according to the supplied marketing context rather than inventing operational guarantees.
+
+Media direction:
+- The customer's real Atlas workshop video is preferred hero/feature media if supplied and technically suitable.
+- Real workshop photography should be prioritized over generic stock photography.
+- Existing customer photos that are flyer-like should be treated as raw evidence, not automatically as final UI artwork; crop, frame, sequence and overlay them carefully rather than reproducing cluttered social-flyer layouts.
+- Promotional graphics should be used as campaign/content modules, not as the entire interface.
+- Use real workshop action: heavy/light vehicles, lifts, diagnostics, electrical work, engines, technicians and recovery/towing equipment.
+
+## MARKET / COMPETITOR VISUAL INSIGHT (RESEARCHED 2026-10-01)
+Current public web research shows Atlas listed at Plot 14441 Kamushongo Road and categorized as car repair/maintenance and auto electrical, while nearby competitors such as Auto City and Supa Quick have a strong physical-location and direct-contact emphasis. Supa Quick's Gaborone branch is also on Kamushongo and publishes hours, directions and callback/contact actions; Auto City publishes frequent product/fitment imagery and prominent phone/location details. These observations inform UX priorities but are not claims about customer preference or service quality.
+
+Design implication: Atlas should make location, hours, direct contact, service categories, towing/urgent action, and real workshop evidence immediately scannable on mobile. The PWA should feel like a working workshop front door rather than a generic brochure or automotive-themed template.
+
+## MEDIA / ASSET INSPECTION RULE
+When customer-supplied Facebook photos/video are available, inspect the actual files before final visual implementation. Preserve the strongest authentic evidence, improve composition/cropping and responsive presentation, and do not replace real Atlas evidence with generic stock merely because stock looks more polished. The supplied video should be evaluated for hero use, duration, file size, mobile loading, poster frame and muted/autoplay behavior before being committed to the PWA.
+
+## TECHNICAL BASELINE
+Current foundation: Next.js 15, React 19, TypeScript, Firebase 11, PWA/service worker, Vercel Analytics/Speed Insights.
+
+Keep dependencies controlled. Prefer the existing working stack unless a change is justified.
+
+## BUILD DISCIPLINE
+Before a meaningful checkpoint, run as applicable:
+`npx tsc --noEmit`
+`npm run lint`
+`npm run build`
+
+Do not run `npm audit fix --force` blindly.
+
+## CHECKPOINT
+Review the actual diff before committing.
+
+Commit meaningful checkpoints, for example:
+- `chore: establish Atlas project foundation`
+- `feat: replace BOEMO storefront with Atlas service front door`
+- `feat: add Atlas service request flow`
+- `feat: add workshop job tracker`
+
+Avoid unnecessary Vercel deployments while the foundation is still changing.
+
+## CURRENT FIRST-PHASE OBJECTIVE
+Convert the cloned BOEMO foundation into a truthful Atlas Service Centre foundation before adding advanced features.
+
+First inspect:
+1. AGENTS.md
+2. package.json
+3. src/app routes/pages
+4. src/lib Firebase/data/auth code
+5. firebase.json
+6. firestore.rules and storage.rules
+7. PWA manifest/service worker/offline implementation
+8. public assets
+9. all BOEMO-specific strings and Firebase references
+10. local environment files and required environment variable names.
+
+Then establish:
+- Atlas identity/branding
+- Atlas Firebase environment wiring
+- Atlas public mobile front door
+- service request/booking foundation
+- truthful offline behavior
+- workshop/admin foundation.
+
+Do not build advanced fleet/job features until the foundation is verified.
+
+## RECOVERY
+If an implementation result differs from the expected result:
+STOP -> inspect actual files/runtime/Git state -> identify the mismatch -> make the smallest corrective change -> verify again.
+
+Never compensate for an unexpected result by blindly adding more code.
