@@ -310,3 +310,19 @@ If an implementation result differs from the expected result:
 STOP -> inspect actual files/runtime/Git state -> identify the mismatch -> make the smallest corrective change -> verify again.
 
 Never compensate for an unexpected result by blindly adding more code.
+
+
+## CHECKPOINT — ATLAS FOUNDATION CONVERSION (2026-10-01)
+- The cloned BOEMO storefront has now been converted at the application layer to Atlas Service Centre.
+- Customer front door is Atlas-first: real workshop video hero, real workshop photo gallery, service divisions, location/hours, direct workshop contact, urgent/recovery contacts, and mobile sticky actions.
+- The former food/menu/order model has been removed from application data and replaced with serviceRequests.
+- Customer request workflow is now: Submitted -> Accepted -> Diagnostics -> Spares Sourcing -> Repair -> Testing -> Ready -> Complete (or Cancelled).
+- /book is the primary service-request route. /order remains only as a compatibility redirect to /book.
+- /orders/[id] is retained as the request-tracking URL shape so existing link patterns do not break; its UI/data are Atlas service-request tracking.
+- /admin is now a workshop operations queue with role-controlled Firebase access and status progression.
+- Customer accounts now describe Atlas service history rather than food ordering.
+- Atlas Firebase identifiers are wired through NEXT_PUBLIC_FIREBASE_* environment variables; BOEMO Firebase identifiers and menu collections are no longer used by the app.
+- BOEMO-specific helper libraries and asset paths were removed. Supplied media blobs were moved from public/boemo-assets to public/atlas-assets without changing the underlying files.
+- The service worker no longer caches large video/media files indiscriminately. The Atlas video remains available as hero media but is intentionally not precached.
+- Firestore rules now protect serviceRequests, customers, and admins for the Atlas model. Admin status updates are role-controlled; customer reads are limited to the authenticated customer's own records.
+- This checkpoint establishes the foundation only. Advanced fleet maintenance, mechanic dispatch, invoices and richer job cards remain subsequent controlled phases.
