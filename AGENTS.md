@@ -216,6 +216,46 @@ Visual evidence should focus on:
 
 Do not invent customer logos, trust badges, certifications, awards or testimonials.
 
+
+## ATLAS BRAND / VISUAL SOURCE OF TRUTH
+The supplied Atlas marketing/signage specification supersedes the earlier generic visual direction when there is a conflict.
+
+Brand identity:
+- ASC abbreviation badge: interlocking stylized ASC green letterforms incorporating vehicle-lift/towing imagery where the supplied source asset supports it.
+- Full wordmark: ATLAS SERVICE CENTRE with the supplied descriptor: "Your Auto Mechanical & Electrical Specialists".
+- Primary green: #00873D (acceptable source variation #0B9B48 when matching an actual supplied logo asset).
+- Primary dark: #101010 / #121212.
+- Alert red: #D9381E for urgent/emergency CTAs; supplied marketing red #E52B50 may be retained where matching original promotional material.
+- Warning yellow: #F39C12.
+- Headers: heavy block/industrial display treatment; body: clean sans-serif. Do not substitute a generic tech/SaaS aesthetic for the workshop identity.
+
+Core service presentation should be organized into three customer-understandable divisions:
+1. Auto Mechanical: full engine overhauls; gearbox/differential repairs; brake-system overhauls; suspension/steering repairs; routine vehicle servicing.
+2. Auto Electrical: starter motors/alternators; vehicle rewiring; computerized diagnostics/fault-code work.
+3. Breakdown & Fleet: 24-hour towing/recovery; onsite repairs/auto-electrical assistance; fleet maintenance; fluid/maintenance checks.
+
+Supplied marketing claims that may be presented only as factual service inclusions when supported by the customer's source material: free computer diagnostics and free car wash with major services. Do not turn these into guarantees or invent eligibility conditions.
+
+Emergency contact UI supplied by the customer:
+- 24/7 emergency/towing CTA may use +267 71621734 and +267 74225346 as direct tap-to-call numbers.
+- General workshop contact remains +267 392 8833.
+- If a phone number's emergency availability is not independently confirmed in current customer material, label it according to the supplied marketing context rather than inventing operational guarantees.
+
+Media direction:
+- The customer's real Atlas workshop video is preferred hero/feature media if supplied and technically suitable.
+- Real workshop photography should be prioritized over generic stock photography.
+- Existing customer photos that are flyer-like should be treated as raw evidence, not automatically as final UI artwork; crop, frame, sequence and overlay them carefully rather than reproducing cluttered social-flyer layouts.
+- Promotional graphics should be used as campaign/content modules, not as the entire interface.
+- Use real workshop action: heavy/light vehicles, lifts, diagnostics, electrical work, engines, technicians and recovery/towing equipment.
+
+## MARKET / COMPETITOR VISUAL INSIGHT (RESEARCHED 2026-10-01)
+Current public web research shows Atlas listed at Plot 14441 Kamushongo Road and categorized as car repair/maintenance and auto electrical, while nearby competitors such as Auto City and Supa Quick have a strong physical-location and direct-contact emphasis. Supa Quick's Gaborone branch is also on Kamushongo and publishes hours, directions and callback/contact actions; Auto City publishes frequent product/fitment imagery and prominent phone/location details. These observations inform UX priorities but are not claims about customer preference or service quality.
+
+Design implication: Atlas should make location, hours, direct contact, service categories, towing/urgent action, and real workshop evidence immediately scannable on mobile. The PWA should feel like a working workshop front door rather than a generic brochure or automotive-themed template.
+
+## MEDIA / ASSET INSPECTION RULE
+When customer-supplied Facebook photos/video are available, inspect the actual files before final visual implementation. Preserve the strongest authentic evidence, improve composition/cropping and responsive presentation, and do not replace real Atlas evidence with generic stock merely because stock looks more polished. The supplied video should be evaluated for hero use, duration, file size, mobile loading, poster frame and muted/autoplay behavior before being committed to the PWA.
+
 ## TECHNICAL BASELINE
 Current foundation: Next.js 15, React 19, TypeScript, Firebase 11, PWA/service worker, Vercel Analytics/Speed Insights.
 
