@@ -1,30 +1,25 @@
-# BOEMO Joos Food Deals
+# Atlas Service Centre
 
-**BOEMO Joos Dealer — Good Food. Great Taste. Every Day!**
+**Atlas Heavy & Light Duty Workshop T/A Atlas Service Centre**
 
-Mobile-first ordering and kitchen-operations PWA for a mobile kitchen serving around Botswana Accountancy College (BAC) and nearby student areas.
+Mobile-first workshop PWA for commercial transport operators, fleet managers, light truck operators and private vehicle owners in Botswana.
 
 ## Customer flow
-Home → Today's Food / Deals → Order Ahead → Pickup or Delivery → Confirmation
+Home → Service request → Workshop review → Diagnostics → Repair → Testing → Ready → Complete
 
-Customers do not need an account to place an order.
+Customers can submit a request without an account. An optional Firebase customer account keeps service history associated with them.
 
-## Current supplied menu
-- Monday: Ke Starch, Beetroot, Pumpkin, Chicken + Stew, Soup, Drink of Choice
-- Tuesday: Samp & Stew
-- Wednesday: Pap, Braai, Chicken, Morogo
-- Thursday: Dumplings & Chicken
-- Friday: Hot Dog & Fries
+## Core services
+- Auto Mechanical: engine overhauls, gearbox/differential repairs, brakes, suspension/steering and routine servicing.
+- Auto Electrical: starter motors, alternators, rewiring and computerized diagnostics.
+- Breakdown & Fleet: towing/recovery, onsite assistance, fleet maintenance and maintenance checks.
 
-## Current supplied deals
-- Beggar & Chips: P30; Bring a Friend P25
-- Hot Dog: P25; Bring a Friend P20
-- Potatoes: P10
-- Cup Drink: P8; Bring a Friend 2 for P15
-- Still Water: P7; Bring a Friend 2 for P10
-- Sausage & Chips: P30
-- Combo Sausage + Chips + Drink: P40
-- Beggar + Chips + Drink: P40
+## Workshop
+Plot 14441, Unit 1, Kamushongo Road, Gaborone West Industrial, Gaborone, Botswana.
+
++267 392 8833 · atlascentre@gmail.com
+
+Hours: Mon–Fri 07:30–17:30 · Sat 08:00–13:00 · Sun closed.
 
 ## Operations
 /admin is protected by Firebase Authentication plus admins/{uid} with role owner/staff.
