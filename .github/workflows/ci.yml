@@ -1,4 +1,4 @@
-name: BOEMO CI
+name: Atlas CI
 
 on:
   push:
