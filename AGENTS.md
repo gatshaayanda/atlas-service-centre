@@ -9,8 +9,6 @@ Phone: +267 392 8833
 Email: atlascentre@gmail.com
 Hours: Monday-Friday 07:30-17:30; Saturday 08:00-13:00; Sunday closed.
 
-This is a real small-business product, not a demo, generic SaaS, or template.
-
 ## Roles
 - Product owner / final reviewer: user
 - Technical navigator + implementation: ChatGPT through repository tooling
@@ -161,8 +159,6 @@ Admin/workshop access should be role-controlled. Do not hard-code an admin UID.
 
 Preserve service/job snapshots where historical accuracy matters; do not rely on mutable current service names/prices to rewrite historical jobs.
 
-Do not weaken Firestore or Storage rules to hide UI/configuration problems.
-
 ## ADMIN / WORKSHOP DASHBOARD
 The admin surface is an operational workshop tool, not a generic CRM.
 
@@ -216,7 +212,6 @@ Visual evidence should focus on:
 
 Do not invent customer logos, trust badges, certifications, awards or testimonials.
 
-
 ## ATLAS BRAND / VISUAL SOURCE OF TRUTH
 The supplied Atlas marketing/signage specification supersedes the earlier generic visual direction when there is a conflict.
 
@@ -257,7 +252,7 @@ Design implication: Atlas should make location, hours, direct contact, service c
 When customer-supplied Facebook photos/video are available, inspect the actual files before final visual implementation. Preserve the strongest authentic evidence, improve composition/cropping and responsive presentation, and do not replace real Atlas evidence with generic stock merely because stock looks more polished. The supplied video should be evaluated for hero use, duration, file size, mobile loading, poster frame and muted/autoplay behavior before being committed to the PWA.
 
 ## TECHNICAL BASELINE
-Current foundation: Next.js 15, React 19, TypeScript, Firebase 11, PWA/service worker, Vercel Analytics/Speed Insights.
+Current foundation: Next.js 15, React 19, TypeScript, Firebase 11, PWA, service worker, Vercel Analytics/Speed Insights.
 
 Keep dependencies controlled. Prefer the existing working stack unless a change is justified.
 
@@ -311,7 +306,6 @@ STOP -> inspect actual files/runtime/Git state -> identify the mismatch -> make 
 
 Never compensate for an unexpected result by blindly adding more code.
 
-
 ## CHECKPOINT — ATLAS FOUNDATION CONVERSION (2026-10-01)
 - The cloned BOEMO storefront has now been converted at the application layer to Atlas Service Centre.
 - Customer front door is Atlas-first: real workshop video hero, real workshop photo gallery, service divisions, location/hours, direct workshop contact, urgent/recovery contacts, and mobile sticky actions.
@@ -326,3 +320,10 @@ Never compensate for an unexpected result by blindly adding more code.
 - The service worker no longer caches large video/media files indiscriminately. The Atlas video remains available as hero media but is intentionally not precached.
 - Firestore rules now protect serviceRequests, customers, and admins for the Atlas model. Admin status updates are role-controlled; customer reads are limited to the authenticated customer's own records.
 - This checkpoint establishes the foundation only. Advanced fleet maintenance, mechanic dispatch, invoices and richer job cards remain subsequent controlled phases.
+
+## CHECKPOINT — ATLAS VISUAL EVIDENCE CAROUSEL (2026-10-01)
+- The home hero continues to use the real Atlas workshop video as the primary visual proof.
+- The workshop evidence slider now uses four lightweight inline SVG illustrations rather than stock imagery or BOEMO food imagery.
+- Illustrations cover Mechanical, Auto Electrical, Diagnostics, and Engines/Recovery.
+- The illustration carousel auto-advances every five seconds and supports previous/next controls plus accessible slide buttons.
+- No external illustration/image library or new image assets were added; the visuals are generated directly in the application code so they remain fast, editable and Atlas-specific.
