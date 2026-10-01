@@ -1,3 +1,1 @@
-import OrderForm from "./order-form";
-export const metadata={title:"Order Food",description:"Order BOEMO food ahead for pickup or delivery."};
-export default function OrderPage(){return <OrderForm/>}
+import {redirect} from "next/navigation";export const metadata={title:"Service request",description:"Request mechanical, auto-electrical, towing or fleet assistance from Atlas Service Centre."};export default function OrderPage(){redirect("/book")}

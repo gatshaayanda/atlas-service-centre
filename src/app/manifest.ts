@@ -1,4 +1,2 @@
-import type { MetadataRoute } from "next";
-export default function manifest(): MetadataRoute.Manifest {
- return {name:"BOEMO Joos Food Deals",short_name:"BOEMO",description:"Good Food. Great Taste. Every Day!",start_url:"/",display:"standalone",background_color:"#0B0B0C",theme_color:"#FFC800",orientation:"portrait-primary",lang:"en",categories:["food","shopping","business"],icons:[{src:"/icon.svg",sizes:"any",type:"image/svg+xml",purpose:"any"},{src:"/icon.svg",sizes:"any",type:"image/svg+xml",purpose:"maskable"}]};
-}
+import type {MetadataRoute} from "next";
+export default function manifest():MetadataRoute.Manifest{return{name:"Atlas Service Centre",short_name:"Atlas Service Centre",description:"Heavy & light duty mechanical and auto-electrical specialists.",start_url:"/",display:"standalone",background_color:"#101010",theme_color:"#00873D",orientation:"portrait-primary",lang:"en-BW",categories:["business","automotive","utilities"],icons:[{src:"/icon.svg",sizes:"any",type:"image/svg+xml",purpose:"any"},{src:"/icon.svg",sizes:"any",type:"image/svg+xml",purpose:"maskable"}]};}
